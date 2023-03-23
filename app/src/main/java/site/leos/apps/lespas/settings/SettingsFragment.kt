@@ -195,7 +195,7 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
         }
 
         findPreference<Preference>(getString(R.string.cache_size_pref_key))?.run {
-            summary = getString(R.string.cache_size_summary, sharedPreferences.getInt(CACHE_SIZE, 800))
+            summary = getString(R.string.cache_size_summary, sharedPreferences.getInt(CACHE_SIZE, 10800))
         }
 
         // Toggle some switches off when Storage Access permission is not granted
@@ -451,7 +451,7 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
                     AppCompatDelegate.setDefaultNightMode(newValue.toInt())
                 }
             }
-            CACHE_SIZE -> sharedPreferences?.let { findPreference<Preference>(getString(R.string.cache_size_pref_key))?.summary = getString(R.string.cache_size_summary, it.getInt(CACHE_SIZE, 800))}
+            CACHE_SIZE -> sharedPreferences?.let { findPreference<Preference>(getString(R.string.cache_size_pref_key))?.summary = getString(R.string.cache_size_summary, it.getInt(CACHE_SIZE, 10800))}
             getString(R.string.wifionly_pref_key) -> syncWhenClosing = true
             getString(R.string.blog_name_pref_key) -> ViewModelProvider(requireActivity())[ActionViewModel::class.java].updateBlogSiteTitle()
             else -> {}
@@ -594,7 +594,7 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
             super.onViewCreated(view, savedInstanceState)
 
             view.findViewById<AutoCompleteTextView>(R.id.cache_size)?.run {
-                setText(sp.getInt(CACHE_SIZE, 800).toString())
+                setText(sp.getInt(CACHE_SIZE, 10800).toString())
                 setAdapter(ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, mutableListOf<Int>().apply { for (i in 1..10) add(i*100) }))
                 setOnItemClickListener { _, _, position, _ ->
                     sp.edit().putInt(CACHE_SIZE, (position + 1) * 100).apply()

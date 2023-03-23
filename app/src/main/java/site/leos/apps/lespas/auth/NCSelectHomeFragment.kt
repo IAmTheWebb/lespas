@@ -95,7 +95,7 @@ class NCSelectHomeFragment: Fragment() {
             resourceRoot = "$baseUrl${getString(R.string.dav_files_endpoint)}$userName"
             webDav = OkHttpWebDav(
                 userName, getUserData(account, getString(R.string.nc_userdata_secret)), baseUrl, getUserData(account, getString(R.string.nc_userdata_selfsigned)).toBoolean(), getUserData(account, getString(R.string.nc_userdata_certificate)), "${Tools.getLocalRoot(requireContext())}/cache", "LesPas_${getString(R.string.lespas_version)}",
-                PreferenceManager.getDefaultSharedPreferences(requireContext()).getInt(SettingsFragment.CACHE_SIZE, 800)
+                PreferenceManager.getDefaultSharedPreferences(requireContext()).getInt(SettingsFragment.CACHE_SIZE, 10800)
             )
         }
 
