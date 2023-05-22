@@ -535,7 +535,7 @@ class OkHttpWebDav(userId: String, secret: String, serverAddress: String, selfSi
     ): Parcelable
 
     companion object {
-        private const val MAX_AGE = "864000"                        // 10 days
+        private const val MAX_AGE = "31536000" // 365 days - "864000" 10 days
         //const val VIDEO_CACHE_FOLDER = "videos"
 
         private const val CHUNK_SIZE = 50L * 1024L * 1024L          // Default chunk size is 50MB
